@@ -1,0 +1,23 @@
+{
+    "name": "rdx/diary",
+    "description": "Configurable diary",
+    "type": "project",
+    "require": {
+        "rdx/db": "^1.14"
+    },
+    "autoload": {
+        "files": [
+            "inc.functions.php"
+        ],
+        "psr-4": {
+            "rdx\\diary\\": "src/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rudie Dirkx",
+            "email": "github@hotblocks.nl"
+        }
+    ]
+}
