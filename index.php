@@ -20,7 +20,7 @@ include 'tpl.header.php';
 		<? foreach ($entry->properties as $prop): ?>
 			<tr>
 				<th><?= html($prop->property) ?></th>
-				<td><?= html($prop->value) ?></td>
+				<td><?= html($prop->property->displayValue($prop->value)) ?></td>
 			</tr>
 		<? endforeach ?>
 	</table>

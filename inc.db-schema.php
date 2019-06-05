@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'version' => 1,
+	'version' => 2,
 	'tables' => [
 		'entries' => [
 			'id' => ['pk' => true],
@@ -14,6 +14,7 @@ return [
 			'id' => ['pk' => true],
 			'name' => ['null' => false],
 			'type' => ['null' => false],
+			'display' => ['null' => true],
 		],
 		'entries_properties' => [
 			'id' => ['pk' => true],
@@ -34,6 +35,11 @@ return [
 				'text' => "Cycled some. And did some other unquantifiable stuff.",
 				'created_on' => 1559509110,
 			],
+			[
+				'date' => '2019-06-03',
+				'text' => "Should have cycled, but didn't.",
+				'created_on' => 1559509110,
+			],
 		],
 		'properties' => [
 			[
@@ -47,6 +53,7 @@ return [
 			[
 				'name' => 'Cycling',
 				'type' => 'int',
+				'display' => 'value ? value ~ "m" : "no"',
 			],
 		],
 		'entries_properties' => [
@@ -64,6 +71,11 @@ return [
 				'entry_id' => 2,
 				'property_id' => 3,
 				'value' => 120,
+			],
+			[
+				'entry_id' => 3,
+				'property_id' => 3,
+				'value' => 0,
 			],
 		],
 	],
