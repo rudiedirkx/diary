@@ -2,6 +2,7 @@
 
 use rdx\diary\Entry;
 use rdx\diary\EntryProperty;
+use rdx\diary\Property;
 
 require 'inc.bootstrap.php';
 
@@ -11,7 +12,11 @@ EntryProperty::eager('property', $props);
 
 include 'tpl.header.php';
 
+$properties = Property::all("enabled = '1' ORDER BY o, id");
+
 ?>
+
+<? include 'tpl.form.php'; ?>
 
 <? foreach ($entries as $entry): ?>
 	<h2><?= $entry->date ?></h2>

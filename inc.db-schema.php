@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'version' => 2,
+	'version' => 4,
 	'tables' => [
 		'entries' => [
 			'id' => ['pk' => true],
@@ -15,6 +15,8 @@ return [
 			'name' => ['null' => false],
 			'type' => ['null' => false],
 			'display' => ['null' => true],
+			'enabled' => ['type' => 'int', 'default' => 1],
+			'o' => ['type' => 'int', 'default' => 0],
 		],
 		'entries_properties' => [
 			'id' => ['pk' => true],

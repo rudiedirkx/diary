@@ -14,6 +14,20 @@ header('Content-type: text/html; charset=utf-8');
 	th {
 		text-align: left;
 	}
+	input.int {
+		width: 1.5em;
+		text-align: center;
+	}
+
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		appearance: none;
+		margin: 0;
+	}
+	input[type=number] {
+		-moz-appearance: textfield;
+	}
 	</style>
 </head>
 
