@@ -28,9 +28,23 @@ class Property extends db_generic_model {
 		],
 	];
 
-	public function makeFormHtml() {
+	public function saveProp( Entry $entry, $value ) {
+		if ($this->type == 'bool' && $value) {
+			$value = '1';
+		}
+
+		EntryProperty::insert([
+			'entry_id' => $entry->id,
+			'property_id' => $this->id,
+			'value' => $value,
+		]);
+	}
+
+	public function makeFormHtml( $value = null ) {
 		if ( isset(self::$types[$this->type]['input_type']) ) {
-			return '<input type="' . self::$types[$this->type]['input_type'] . '" name="props[' . $this->id . ']" />';
+			$checked = $this->type == 'bool' && $value ? 'checked' : '';
+			$value = $this->type != 'bool' && $value !== null ? 'value="' . html($value) . '"' : '';
+			return '<input type="' . self::$types[$this->type]['input_type'] . '" name="props[' . $this->id . ']" ' . $checked . ' ' . $value . ' />';
 		}
 
 		return '';
