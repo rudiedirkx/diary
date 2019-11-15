@@ -18,6 +18,7 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 	}
 	else {
 		$new = true;
+		unset($_POST['id']);
 		$entry = Entry::find(Entry::insert($_POST));
 	}
 

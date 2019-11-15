@@ -5,7 +5,7 @@
 		<legend><?= ($entry ?? null) ? "Edit $entry->date" : 'Create' ?></legend>
 
 		<p>Date:<br><input type="date" name="date" value="<?= $entry->date ?? date('Y-m-d') ?>" /></p>
-		<p><textarea name="text" cols="50" rows="4"><?= html($entry->text ?? '') ?></textarea></p>
+		<p><textarea name="text" rows="4"><?= html($entry->text ?? '') ?></textarea></p>
 		<table border="1">
 			<? foreach ($properties as $prop): ?>
 				<tr>
