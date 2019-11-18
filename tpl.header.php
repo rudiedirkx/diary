@@ -17,8 +17,9 @@ header('Content-type: text/html; charset=utf-8');
 	body {
 		max-width: 500px;
 	}
-	th {
+	td, th {
 		text-align: left;
+		vertical-align: top;
 	}
 	input,
 	textarea {
