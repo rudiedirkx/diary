@@ -38,6 +38,8 @@ $entries = Entry::all('1 ORDER BY date DESC LIMIT 10');
 $props = Entry::eager('properties', $entries);
 EntryProperty::eager('property', $props);
 
+$entry = Entry::find($_GET['edit'] ?? 0);
+
 include 'tpl.header.php';
 
 $properties = Property::all("enabled = '1' ORDER BY o, id");
@@ -47,7 +49,7 @@ $properties = Property::all("enabled = '1' ORDER BY o, id");
 <? include 'tpl.form.php'; ?>
 
 <? foreach ($entries as $entry): ?>
-	<h2><a href="edit.php?id=<?= $entry->id ?>"><?= $entry->date ?></a></h2>
+	<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->date ?></a></h2>
 	<p><?= nl2br(html($entry->text)) ?></p>
 	<table>
 		<? foreach ($entry->properties as $prop): ?>
