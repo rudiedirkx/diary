@@ -21,6 +21,9 @@ header('Content-type: text/html; charset=utf-8');
 		text-align: left;
 		vertical-align: top;
 	}
+	th {
+		white-space: nowrap;
+	}
 	input,
 	textarea {
 		width: 100%;
