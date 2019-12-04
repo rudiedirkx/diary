@@ -4,7 +4,11 @@
 	<fieldset>
 		<legend><?= ($entry ?? null) ? "Edit $entry->date" : 'Create' ?></legend>
 
-		<p>Date:<br><input type="date" name="date" value="<?= $entry->date ?? date('Y-m-d') ?>" /></p>
+		<? if ($entry ?? null): ?>
+			<input type="hidden" name="date" value="<?= $entry->date ?>" />
+		<? else: ?>
+			<p><input type="date" name="date" value="<?= date('Y-m-d') ?>" /></p>
+		<? endif ?>
 		<p><textarea name="text" rows="2"><?= html($entry->text ?? '') ?></textarea></p>
 		<table border="1">
 			<? foreach ($properties as $prop): ?>
