@@ -39,6 +39,9 @@ $props = Entry::eager('properties', $entries);
 EntryProperty::eager('property', $props);
 
 $entry = Entry::find($_GET['edit'] ?? 0);
+if (!$entry && reset($entries)->date == date('Y-m-d', strtotime('-4 hours'))) {
+	$entry = reset($entries);
+}
 
 include 'tpl.header.php';
 

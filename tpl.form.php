@@ -9,7 +9,7 @@
 		<? else: ?>
 			<p><input type="date" name="date" value="<?= date('Y-m-d') ?>" /></p>
 		<? endif ?>
-		<p><textarea name="text" rows="2"><?= html($entry->text ?? '') ?></textarea></p>
+		<p><textarea name="text" rows="1"><?= html($entry->text ?? '') ?></textarea></p>
 		<table border="1">
 			<? foreach ($properties as $prop): ?>
 				<tr>

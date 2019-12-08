@@ -28,6 +28,10 @@ header('Content-type: text/html; charset=utf-8');
 	textarea {
 		width: 100%;
 	}
+	input.auto-width,
+	textarea.auto-width {
+		width: auto;
+	}
 	input.int {
 		width: 1.5em;
 		text-align: center;

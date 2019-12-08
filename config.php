@@ -4,7 +4,7 @@ use rdx\diary\Property;
 
 require 'inc.bootstrap.php';
 
-$properties = Property::all("enabled = '1' ORDER BY o, id");
+$properties = Property::all("1 ORDER BY o, id");
 $propertyTypes = array_map(function($type) {
 	return $type['label'];
 }, Property::$types);
@@ -12,7 +12,7 @@ $propertyTypes = array_map(function($type) {
 if ( isset($_POST['props']) ) {
 	foreach ($_POST['props'] as $id => $data) {
 		if ( isset($properties[$id]) ) {
-			$properties[$id]->save($data);
+			$properties[$id]->save($data + ['enabled' => 0]);
 		}
 		elseif ( $id == 0 && ($data['name'] ?? '') !== '' ) {
 			Property::insert($data);
@@ -30,12 +30,16 @@ include 'tpl.header.php';
 	<table border="1">
 		<tr>
 			<th></th>
+			<th></th>
 			<th>Name</th>
 			<th>Type</th>
 			<th>Display</th>
 		</tr>
 		<? foreach (array_merge($properties, [new Property(['id' => 0])]) as $prop): ?>
 			<tr>
+				<td>
+					<input name="props[<?= $prop->id ?>][enabled]" type="checkbox" value="1" <?= $prop->enabled ? 'checked' : '' ?> class="auto-width" />
+				</td>
 				<td>
 					<input name="props[<?= $prop->id ?>][o]" value="<?= html($prop->o) ?>" type="number" class="int" />
 				</td>
