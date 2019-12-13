@@ -15,7 +15,7 @@ header('Content-type: text/html; charset=utf-8');
 		box-sizing: border-box;
 	}
 	body {
-		max-width: 500px;
+		max-width: 700px;
 	}
 	td, th {
 		text-align: left;
@@ -35,6 +35,9 @@ header('Content-type: text/html; charset=utf-8');
 	input.int {
 		width: 1.5em;
 		text-align: center;
+	}
+	textarea[name="text"]:focus {
+		height: 5em;
 	}
 
 	input[type=number]::-webkit-inner-spin-button,

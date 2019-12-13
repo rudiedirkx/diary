@@ -31,12 +31,15 @@ include 'tpl.header.php';
 		<tr>
 			<th></th>
 			<th></th>
+			<th></th>
+			<th>Machine name</th>
 			<th>Name</th>
 			<th>Type</th>
 			<th>Display</th>
 		</tr>
 		<? foreach (array_merge($properties, [new Property(['id' => 0])]) as $prop): ?>
 			<tr>
+				<td><?= $prop->id ?: '' ?></td>
 				<td>
 					<input name="props[<?= $prop->id ?>][enabled]" type="checkbox" value="1" <?= $prop->enabled ? 'checked' : '' ?> class="auto-width" />
 				</td>
@@ -44,12 +47,15 @@ include 'tpl.header.php';
 					<input name="props[<?= $prop->id ?>][o]" value="<?= html($prop->o) ?>" type="number" class="int" />
 				</td>
 				<td>
+					<input name="props[<?= $prop->id ?>][machine_name]" value="<?= html($prop->machine_name) ?>" />
+				</td>
+				<td>
 					<input name="props[<?= $prop->id ?>][name]" value="<?= html($prop->name) ?>" />
 				</td>
 				<td>
 					<select name="props[<?= $prop->id ?>][type]"><?= html_options($propertyTypes, $prop->type) ?></select>
 				</td>
-				<td>
+				<td style="width: 20em">
 					<input name="props[<?= $prop->id ?>][display]" value="<?= html($prop->display) ?>" />
 				</td>
 			</tr>

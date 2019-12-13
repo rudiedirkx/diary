@@ -3,6 +3,7 @@
 namespace rdx\diary;
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
+use Symfony\Component\ExpressionLanguage\SyntaxError;
 use db_generic_model;
 
 class Property extends db_generic_model {
@@ -50,14 +51,21 @@ class Property extends db_generic_model {
 		return '';
 	}
 
-	public function displayValue($value) {
+	public function displayValue($value, EntryValues $values) {
 		if (!$this->display) {
 			return $value;
 		}
 
-		$language = new ExpressionLanguage();
-		$display = $language->evaluate($this->display, ['value' => $value]);
-		return $display;
+		try {
+			$language = new ExpressionLanguage();
+			$display = $language->evaluate($this->display, ['value' => $value, 'values' => $values]);
+			return $display;
+		}
+		catch ( SyntaxError $ex ) {
+			return 'ERROR: ' . $ex->getMessage();
+		}
+
+		return $value;
 	}
 
 	public function save( array $data ) {

@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'version' => 4,
+	'version' => 5,
 	'tables' => [
 		'entries' => [
 			'id' => ['pk' => true],
@@ -12,6 +12,7 @@ return [
 		],
 		'properties' => [
 			'id' => ['pk' => true],
+			'machine_name' => ['null' => true],
 			'name' => ['null' => false],
 			'type' => ['null' => false],
 			'display' => ['null' => true],

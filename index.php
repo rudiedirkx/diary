@@ -34,7 +34,7 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 	return do_redirect(null);
 }
 
-$entries = Entry::all('1 ORDER BY date DESC LIMIT 10');
+$entries = Entry::all('1 ORDER BY date DESC LIMIT 31');
 $props = Entry::eager('properties', $entries);
 EntryProperty::eager('property', $props);
 
@@ -55,10 +55,10 @@ $properties = Property::all("enabled = '1' ORDER BY o, id");
 	<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->date ?></a></h2>
 	<p><?= nl2br(html($entry->text)) ?></p>
 	<table>
-		<? foreach ($entry->properties as $prop): ?>
+		<? foreach ($entry->property_displays as $display): ?>
 			<tr>
-				<th><?= html($prop->property) ?></th>
-				<td><?= html($prop->property->displayValue($prop->value)) ?></td>
+				<th><?= html($display->property) ?></th>
+				<td><?= html($display->value) ?></td>
 			</tr>
 		<? endforeach ?>
 	</table>
