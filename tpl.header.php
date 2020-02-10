@@ -8,6 +8,8 @@ header('Content-type: text/html; charset=utf-8');
 
 <head>
 	<meta charset="utf-8" />
+	<meta name="theme-color" content="#333" />
+	<meta name="referrer" content="no-referrer" />
 	<title>The Diary 2000</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<style>
