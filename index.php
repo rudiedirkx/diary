@@ -34,7 +34,7 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 	return do_redirect(null);
 }
 
-$entries = Entry::all('1 ORDER BY date DESC LIMIT 31');
+$entries = Entry::all('1 ORDER BY date DESC LIMIT 366');
 $props = Entry::eager('properties', $entries);
 EntryProperty::eager('property', $props);
 
