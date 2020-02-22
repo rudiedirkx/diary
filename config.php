@@ -6,7 +6,7 @@ require 'inc.bootstrap.php';
 
 $properties = Property::all("1 ORDER BY o, id");
 $propertyTypes = array_map(function($type) {
-	return $type['label'];
+	return $type->label;
 }, Property::$types);
 
 if ( isset($_POST['props']) ) {

@@ -1,5 +1,8 @@
 <?php
 
+use rdx\diary\Property;
+use rdx\diary\properties;
+
 require __DIR__ . '/env.php';
 require __DIR__ . '/vendor/autoload.php';
 
@@ -11,5 +14,11 @@ if ( !$db ) {
 db_generic_model::$_db = $db;
 
 $db->ensureSchema(require 'inc.db-schema.php');
+
+Property::$types['text'] = new properties\Text();
+Property::$types['time'] = new properties\Time();
+Property::$types['int'] = new properties\Number(0, 'Integer');
+Property::$types['number'] = new properties\Number(2, 'Number');
+Property::$types['bool'] = new properties\Boolean();
 
 header('Content-type: text/plain; charset=utf-8');

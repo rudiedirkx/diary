@@ -10,24 +10,7 @@ class Property extends db_generic_model {
 
 	static public $_table = 'properties';
 
-	static public $types = [
-		'text' => [
-			'label' => 'Text',
-			'input_type' => 'text',
-		],
-		'time' => [
-			'label' => 'Time',
-			'input_type' => 'time',
-		],
-		'int' => [
-			'label' => 'Integer',
-			'input_type' => 'number',
-		],
-		'bool' => [
-			'label' => 'Boolean',
-			'input_type' => 'checkbox',
-		],
-	];
+	static public $types = [];
 
 	public function saveProp( Entry $entry, $value ) {
 		if ($this->type == 'bool' && $value) {
@@ -42,13 +25,7 @@ class Property extends db_generic_model {
 	}
 
 	public function makeFormHtml( $value = null ) {
-		if ( isset(self::$types[$this->type]['input_type']) ) {
-			$checked = $this->type == 'bool' && $value ? 'checked' : '';
-			$value = $this->type != 'bool' && $value !== null ? 'value="' . html($value) . '"' : '';
-			return '<input type="' . self::$types[$this->type]['input_type'] . '" name="props[' . $this->id . ']" ' . $checked . ' ' . $value . ' />';
-		}
-
-		return '';
+		return self::$types[$this->type]->makeFormHtml("props[$this->id]", $value);
 	}
 
 	public function displayValue($value, EntryValues $values) {
