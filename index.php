@@ -34,24 +34,29 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 	return do_redirect(null);
 }
 
-$entries = Entry::all('1 ORDER BY date DESC LIMIT 366');
+$properties = Property::all("enabled = '1' ORDER BY o, id");
+
+$where = Property::whereFromFilter($properties, $_GET);
+$entries = Entry::all("$where ORDER BY date DESC LIMIT 366");
 $props = Entry::eager('properties', $entries);
 EntryProperty::eager('property', $props);
 
+include 'tpl.header.php';
+
 $entry = Entry::find($_GET['edit'] ?? 0);
-if (!$entry && reset($entries)->date == date('Y-m-d', strtotime('-4 hours'))) {
+if ( !$entry && reset($entries)->date == date('Y-m-d', strtotime('-4 hours')) ) {
 	$entry = reset($entries);
 }
 
-include 'tpl.header.php';
-
-$properties = Property::all("enabled = '1' ORDER BY o, id");
+if ( $where === '1' ) {
+	include 'tpl.form.php';
+}
 
 ?>
 
-<? include 'tpl.form.php'; ?>
-
 <p><a href="config.php">Config</a></p>
+
+<? include 'tpl.filters.php'; ?>
 
 <? foreach ($entries as $entry): ?>
 	<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->date ?></a></h2>

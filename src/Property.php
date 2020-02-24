@@ -12,6 +12,20 @@ class Property extends db_generic_model {
 
 	static public $types = [];
 
+	static public function whereFromFilter( array $properties, array $filters ) {
+		if ( !count(array_filter($filters)) ) return '1';
+
+		$wheres = [];
+
+		foreach ( $properties as $property ) {
+			if ( in_array($property->id, $filters['with'] ?? []) ) {
+				$wheres[] = self::$_db->replaceholders('id IN (select entry_id from entries_properties where property_id = ?)', $property->id);
+			}
+		}
+
+		return implode(' AND ', $wheres) ?: '1';
+	}
+
 	public function saveProp( Entry $entry, $value ) {
 		if ($this->type == 'bool' && $value) {
 			$value = '1';

@@ -26,20 +26,29 @@ header('Content-type: text/html; charset=utf-8');
 	th {
 		white-space: nowrap;
 	}
-	input,
-	textarea {
+
+	form.entry input,
+	form.entry textarea {
 		width: 100%;
 	}
-	input.auto-width,
-	textarea.auto-width {
+	form.entry input.auto-width,
+	form.entry textarea.auto-width,
+	form.entry input[type="checkbox"] {
 		width: auto;
 	}
-	input.int {
+	form.entry input.int {
 		width: 1.5em;
 		text-align: center;
 	}
-	textarea[name="text"]:focus {
+	form.entry textarea[name="text"]:focus {
 		height: 5em;
+	}
+
+	form.filter label {
+		display: inline-block;
+	}
+	form.filter label {
+		margin-right: .5em;
 	}
 
 	input[type=number]::-webkit-inner-spin-button,
