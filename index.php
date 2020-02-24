@@ -51,6 +51,8 @@ $properties = Property::all("enabled = '1' ORDER BY o, id");
 
 <? include 'tpl.form.php'; ?>
 
+<p><a href="config.php">Config</a></p>
+
 <? foreach ($entries as $entry): ?>
 	<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->date ?></a></h2>
 	<p><?= nl2br(html($entry->text)) ?></p>

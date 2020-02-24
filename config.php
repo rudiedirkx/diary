@@ -37,7 +37,7 @@ include 'tpl.header.php';
 			<th>Type</th>
 			<th>Display</th>
 		</tr>
-		<? foreach (array_merge($properties, [new Property(['id' => 0])]) as $prop): ?>
+		<? foreach (array_merge($properties, [new Property(['id' => 0, 'enabled' => 1])]) as $prop): ?>
 			<tr>
 				<td><?= $prop->id ?: '' ?></td>
 				<td>
