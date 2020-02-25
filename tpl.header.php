@@ -36,12 +36,13 @@ header('Content-type: text/html; charset=utf-8');
 	form.entry input[type="checkbox"] {
 		width: auto;
 	}
-	form.entry input.int {
-		width: 1.5em;
-		text-align: center;
-	}
 	form.entry textarea[name="text"]:focus {
 		height: 5em;
+	}
+
+	input.int {
+		width: 1.8em;
+		text-align: center;
 	}
 
 	form.filter label {
