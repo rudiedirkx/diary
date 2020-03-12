@@ -43,8 +43,10 @@ EntryProperty::eager('property', $props);
 
 include 'tpl.header.php';
 
-$entry = Entry::find($_GET['edit'] ?? 0);
-if ( !$entry && reset($entries)->date == date('Y-m-d', strtotime('-4 hours')) ) {
+$todayish = date('Y-m-d', strtotime('-5 hours'));
+
+$explicitEntry = $entry = Entry::find($_GET['edit'] ?? 0);
+if ( !$entry && reset($entries)->date == $todayish ) {
 	$entry = reset($entries);
 }
 

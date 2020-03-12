@@ -4,10 +4,10 @@
 	<fieldset>
 		<legend><?= ($entry ?? null) ? "Edit $entry->date" : 'Create' ?></legend>
 
-		<? if ($entry ?? null): ?>
+		<? if (!$explicitEntry && ($entry ?? null)): ?>
 			<input type="hidden" name="date" value="<?= $entry->date ?>" />
 		<? else: ?>
-			<p><input type="date" name="date" value="<?= date('Y-m-d') ?>" /></p>
+			<p><input type="date" name="date" value="<?= $entry->date ?? $todayish ?>" /></p>
 		<? endif ?>
 		<p><textarea name="text" rows="1"><?= html($entry->text ?? '') ?></textarea></p>
 		<table cellpadding="3" cellspacing="0" border="1">
