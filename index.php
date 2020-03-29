@@ -67,7 +67,7 @@ if ( $where === '1' ) {
 		<? foreach ($entry->property_displays as $display): ?>
 			<tr>
 				<th><?= html($display->property) ?></th>
-				<td><?= html($display->value) ?></td>
+				<td><?= $display->html_value ?></td>
 			</tr>
 		<? endforeach ?>
 	</table>

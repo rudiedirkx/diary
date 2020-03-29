@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\ExpressionLanguage\ExpressionFunction;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use rdx\diary\Property;
 use rdx\diary\properties;
 
@@ -20,5 +22,8 @@ Property::$types['time'] = new properties\Time();
 Property::$types['int'] = new properties\Number(0, 'Integer');
 Property::$types['number'] = new properties\Number(2, 'Number');
 Property::$types['bool'] = new properties\Boolean();
+
+$GLOBALS['expr'] = new ExpressionLanguage();
+$GLOBALS['expr']->addFunction(ExpressionFunction::fromPhp('str_replace'));
 
 header('Content-type: text/plain; charset=utf-8');
