@@ -19,7 +19,7 @@ class Number extends InputPropertyType {
 
 	protected function getAttributes() : array {
 		return [
-			'min' => '0',
+//			'min' => '0',
 			'step' => number_format(1 / pow(10, $this->decimals), $this->decimals),
 		];
 	}
