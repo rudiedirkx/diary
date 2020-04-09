@@ -3,9 +3,8 @@
 namespace rdx\diary;
 
 use Symfony\Component\ExpressionLanguage\SyntaxError;
-use db_generic_model;
 
-class Property extends db_generic_model {
+class Property extends Model {
 
 	static public $_table = 'properties';
 
