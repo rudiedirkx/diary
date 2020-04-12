@@ -1,5 +1,9 @@
 <?php
 
+function get_days_diff($date1, $date2) {
+	return (new DateTime($date1))->diff(new DateTime($date2))->days;
+}
+
 function html_options( $options, $selected = null, $empty = '', $datalist = false ) {
 	$selected = (array) $selected;
 

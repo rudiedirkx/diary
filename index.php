@@ -60,17 +60,26 @@ if ( $where === '1' ) {
 
 <? include 'tpl.filters.php'; ?>
 
-<? foreach ($entries as $entry): ?>
-	<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->date ?></a></h2>
-	<p><?= nl2br(html($entry->text)) ?></p>
-	<table>
-		<? foreach ($entry->property_displays as $display): ?>
-			<tr>
-				<th><?= html($display->property) ?></th>
-				<td><?= $display->html_value ?></td>
-			</tr>
-		<? endforeach ?>
-	</table>
+<? $prevDate = null ?>
+<? foreach ($entries as $entry):
+	$days = $prevDate ? get_days_diff($prevDate, $entry->date) : null;
+	$prevDate = $entry->date;
+	?>
+	<? if ($days): ?>
+		<div class="between-entries">...<?= $days ?> days...</div>
+	<? endif ?>
+	<div class="entry">
+		<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->date ?></a></h2>
+		<p><?= nl2br(html($entry->text)) ?></p>
+		<table>
+			<? foreach ($entry->property_displays as $display): ?>
+				<tr>
+					<th><?= html($display->property) ?></th>
+					<td><?= $display->html_value ?></td>
+				</tr>
+			<? endforeach ?>
+		</table>
+	</div>
 <? endforeach ?>
 
 <?php

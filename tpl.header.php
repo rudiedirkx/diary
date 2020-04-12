@@ -40,6 +40,11 @@ header('Content-type: text/html; charset=utf-8');
 		height: 5em;
 	}
 
+	h2,
+	.between-entries {
+		margin: 1em 0;
+	}
+
 	input.int {
 		width: 1.8em;
 		text-align: center;
