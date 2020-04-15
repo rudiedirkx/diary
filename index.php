@@ -62,7 +62,7 @@ if ( $where === '1' ) {
 
 <? $prevDate = null ?>
 <? foreach ($entries as $entry):
-	$days = $prevDate ? get_days_diff($prevDate, $entry->date) : null;
+	$days = $prevDate ? get_days_diff($prevDate, $entry->date) - 1 : null;
 	$prevDate = $entry->date;
 	?>
 	<? if ($days): ?>
