@@ -29,6 +29,10 @@ class Entry extends db_generic_model {
 		return true;
 	}
 
+	protected function get_pretty_date() {
+		return date('D d-m-Y', strtotime($this->date));
+	}
+
 	protected function get_property_values() {
 		$values = [];
 		foreach ($this->properties as $prop) {

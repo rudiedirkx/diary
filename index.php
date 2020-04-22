@@ -69,7 +69,7 @@ if ( $where === '1' ) {
 		<div class="between-entries">...<?= $days ?> days...</div>
 	<? endif ?>
 	<div class="entry">
-		<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->date ?></a></h2>
+		<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->pretty_date ?></a></h2>
 		<p><?= nl2br(html($entry->text)) ?></p>
 		<table>
 			<? foreach ($entry->property_displays as $display): ?>

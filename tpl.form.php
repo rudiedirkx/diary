@@ -2,7 +2,7 @@
 	<input type="hidden" name="id" value="<?= $entry->id ?? '' ?>" />
 
 	<fieldset>
-		<legend><?= ($entry ?? null) ? "Edit $entry->date" : 'Create' ?></legend>
+		<legend><?= ($entry ?? null) ? "Edit $entry->pretty_date" : 'Create' ?></legend>
 
 		<? if (!$explicitEntry && ($entry ?? null)): ?>
 			<input type="hidden" name="date" value="<?= $entry->date ?>" />
