@@ -7,6 +7,7 @@
 				With <em><?= html($property) ?></em>
 			</label>
 		<? endforeach ?>
+		<input type="text" name="search" placeholder="Search all" size="10" value="<?= html($_GET['search'] ?? '') ?>" />
 		<button>Filter</button>
 	</form>
 </details>

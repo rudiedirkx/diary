@@ -56,7 +56,10 @@ if ( $where === '1' ) {
 
 ?>
 
-<p><a href="config.php">Config</a></p>
+<p>
+	<? if ($where !== '1'): ?><a href="index.php">Home</a><? endif ?>
+	<a href="config.php">Config</a>
+</p>
 
 <? include 'tpl.filters.php'; ?>
 
