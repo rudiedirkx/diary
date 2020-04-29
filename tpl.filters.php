@@ -1,4 +1,4 @@
-<details>
+<details <? if ($showHomeLink): ?>open<? endif ?>>
 	<summary>Filters</summary>
 	<form method="get" action="" class="filter">
 		<? foreach ($properties as $property): ?>

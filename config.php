@@ -26,6 +26,10 @@ include 'tpl.header.php';
 
 ?>
 
+<p>
+	<a href="index.php">Home</a>
+</p>
+
 <form method="post" action>
 	<table border="1">
 		<tr>

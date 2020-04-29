@@ -46,18 +46,22 @@ include 'tpl.header.php';
 $todayish = date('Y-m-d', strtotime('-5 hours'));
 
 $explicitEntry = $entry = Entry::find($_GET['edit'] ?? 0);
-if ( !$entry && reset($entries)->date == $todayish ) {
+if ( !$entry && count($entries) && reset($entries)->date == $todayish ) {
 	$entry = reset($entries);
 }
 
-if ( $where === '1' ) {
+$showForm = $where === '1';
+$showHomeLink = $where !== '1';
+$showFiltersOpen = $where !== '1';
+
+if ( $showForm ) {
 	include 'tpl.form.php';
 }
 
 ?>
 
 <p>
-	<? if ($where !== '1'): ?><a href="index.php">Home</a><? endif ?>
+	<? if ($showHomeLink): ?><a href="index.php">Home</a><? endif ?>
 	<a href="config.php">Config</a>
 </p>
 
