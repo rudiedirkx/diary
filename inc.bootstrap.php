@@ -25,5 +25,6 @@ Property::$types['bool'] = new properties\Boolean();
 
 $GLOBALS['expr'] = new ExpressionLanguage();
 $GLOBALS['expr']->addFunction(ExpressionFunction::fromPhp('str_replace'));
+$GLOBALS['expr']->addFunction(ExpressionFunction::fromPhp('trim'));
 
 header('Content-type: text/plain; charset=utf-8');
