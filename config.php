@@ -28,6 +28,7 @@ include 'tpl.header.php';
 
 <p>
 	<a href="index.php">Home</a>
+	<a href="queries.php">Queries</a>
 </p>
 
 <form method="post" action>

@@ -8,8 +8,6 @@ $query = Query::find($_GET['id'] ?? 0);
 
 include 'tpl.header.php';
 
-$records = $db->fetch($query->sql)->all();
-
 ?>
 
 <style>
@@ -34,6 +32,8 @@ td, th {
 <pre><?= html($query->sql) ?></pre>
 
 <?php
+
+$records = $db->fetch($query->sql)->all();
 
 if ( !count($records) ) {
 	echo '<p>No results</p>';

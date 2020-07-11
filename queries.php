@@ -36,6 +36,7 @@ input, fieldset {
 
 <p>
 	<a href="index.php">Home</a>
+	<a href="config.php">Config</a>
 </p>
 
 <form method="post" action>
