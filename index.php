@@ -3,6 +3,7 @@
 use rdx\diary\Entry;
 use rdx\diary\EntryProperty;
 use rdx\diary\Property;
+use rdx\diary\Query;
 
 require 'inc.bootstrap.php';
 
@@ -43,6 +44,8 @@ EntryProperty::eager('property', $props);
 
 include 'tpl.header.php';
 
+$queries = Query::all('1 ORDER BY name');
+
 $todayish = date('Y-m-d', strtotime('-5 hours'));
 
 $explicitEntry = $entry = Entry::find($_GET['edit'] ?? 0);
@@ -63,7 +66,15 @@ if ( $showForm ) {
 <p>
 	<? if ($showHomeLink): ?><a href="index.php">Home</a><? endif ?>
 	<a href="config.php">Config</a>
+	<a href="queries.php">Queries</a>
 </p>
+
+<details>
+	<summary>Queries</summary>
+	<? foreach ($queries as $query): ?>
+		<a href="query.php?id=<?= $query->id ?>"><?= html($query->name) ?></a> |
+	<? endforeach ?>
+</details>
 
 <? include 'tpl.filters.php'; ?>
 

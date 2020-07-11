@@ -61,6 +61,14 @@ class Property extends Model {
 		return $value;
 	}
 
+	public function update( $data ) {
+		if ( ($data['machine_name'] ?? '--') === '' ) {
+			$data['machine_name'] = null;
+		}
+
+		return parent::update($data);
+	}
+
 	public function save( array $data ) {
 		if ( @$data['name'] === '' ) {
 			return $this->update(['enabled' => 0]);
