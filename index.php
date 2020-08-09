@@ -71,9 +71,11 @@ if ( $showForm ) {
 
 <details>
 	<summary>Queries</summary>
-	<? foreach ($queries as $query): ?>
-		<a href="query.php?id=<?= $query->id ?>"><?= html($query->name) ?></a> |
-	<? endforeach ?>
+	<ul>
+		<? foreach ($queries as $query): ?>
+			<li><a href="query.php?id=<?= $query->id ?>"><?= html($query->name) ?></a></li>
+		<? endforeach ?>
+	</ul>
 </details>
 
 <? include 'tpl.filters.php'; ?>

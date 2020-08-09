@@ -26,6 +26,9 @@ header('Content-type: text/html; charset=utf-8');
 	th {
 		white-space: nowrap;
 	}
+	summary {
+		padding: 3px 0;
+	}
 
 	form.entry input,
 	form.entry textarea {
