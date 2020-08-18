@@ -80,7 +80,7 @@ if ( $showForm ) {
 
 <? include 'tpl.filters.php'; ?>
 
-<? $prevDate = null ?>
+<? $prevDate = date('Y-m-d', strtotime('tomorrow')) ?>
 <? foreach ($entries as $entry):
 	$days = $prevDate ? get_days_diff($prevDate, $entry->date) - 1 : null;
 	$prevDate = $entry->date;
