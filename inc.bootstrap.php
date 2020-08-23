@@ -27,4 +27,6 @@ $GLOBALS['expr'] = new ExpressionLanguage();
 $GLOBALS['expr']->addFunction(ExpressionFunction::fromPhp('str_replace'));
 $GLOBALS['expr']->addFunction(ExpressionFunction::fromPhp('trim'));
 
+const TODAYISH = '-5 hours';
+
 header('Content-type: text/plain; charset=utf-8');

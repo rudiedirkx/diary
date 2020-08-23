@@ -15,6 +15,7 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 		$new = false;
 		$entry = Entry::find($_POST['id']);
 		unset($_POST['id']);
+		$_POST['text'] = trim($_POST['text']);
 		$entry->update($_POST);
 	}
 	else {
@@ -46,7 +47,7 @@ include 'tpl.header.php';
 
 $queries = Query::all('1 ORDER BY name');
 
-$todayish = date('Y-m-d', strtotime('-5 hours'));
+$todayish = date('Y-m-d', strtotime(TODAYISH));
 
 $explicitEntry = $entry = Entry::find($_GET['edit'] ?? 0);
 if ( !$entry && count($entries) && reset($entries)->date == $todayish ) {
@@ -80,7 +81,7 @@ if ( $showForm ) {
 
 <? include 'tpl.filters.php'; ?>
 
-<? $prevDate = date('Y-m-d', strtotime('tomorrow')) ?>
+<? $prevDate = date('Y-m-d', strtotime('tomorrow', strtotime(TODAYISH))) ?>
 <? foreach ($entries as $entry):
 	$days = $prevDate ? get_days_diff($prevDate, $entry->date) - 1 : null;
 	$prevDate = $entry->date;
