@@ -11,6 +11,8 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 	$props = $_POST['props'] ?? [];
 	unset($_POST['props']);
 
+	$db->begin();
+
 	if ( !empty($_POST['id']) ) {
 		$new = false;
 		$entry = Entry::find($_POST['id']);
@@ -30,16 +32,19 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 			$entry->delete();
 		}
 
+		header('HTTP/1.0 400 Property save failed');
 		exit("Property save failed. Go back?\n");
 	}
 
-	return do_redirect(null);
+	$db->commit();
+
+	return empty($_GET['ajax']) ? do_redirect(null) : do_json(['ok' => 1]);
 }
 
 $properties = Property::all("enabled = '1' ORDER BY o, id");
 
 $where = Property::whereFromFilter($properties, $_GET);
-$entries = Entry::all("$where ORDER BY date DESC LIMIT 366");
+$entries = Entry::all("$where ORDER BY date DESC LIMIT 63");
 $props = Entry::eager('properties', $entries);
 EntryProperty::eager('property', $props);
 

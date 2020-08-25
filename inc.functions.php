@@ -34,6 +34,12 @@ function get_url( $path, $query = array() ) {
 	return $path . $query;
 }
 
+function do_json( array $data ) {
+	header('Content-type: application/json; charset=utf-8');
+	echo json_encode($data);
+	exit;
+}
+
 function do_redirect( $path, $query = array() ) {
 	$url = get_url($path, $query);
 	header('Location: ' . $url);
