@@ -29,7 +29,7 @@ td, th {
 	<a href="index.php">Home</a>
 </p>
 
-<pre><?= html($query->sql) ?></pre>
+<pre><?= html($query->query) ?></pre>
 
 <?php
 
