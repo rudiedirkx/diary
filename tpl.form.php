@@ -1,4 +1,9 @@
-<form method="post" action="index.php" class="entry" onsubmit="return fetch(new Request('?ajax=1', {method: 'post', body: new FormData(this)})).then(rsp => location.reload()), false">
+<form method="post" action="index.php" class="entry" onsubmit="return fetch(new Request('?ajax=1', {
+	method: 'post',
+	body: new FormData(this),
+})).then(rsp => {
+	rsp.clone().json().then(dt => location.reload(), ex => rsp.text().then(txt => alert(txt)))
+}), false">
 	<input type="hidden" name="id" value="<?= $entry->id ?? '' ?>" />
 
 	<fieldset>
