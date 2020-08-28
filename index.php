@@ -38,8 +38,13 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 
 	$db->commit();
 
+	setcookie('edited', 1);
+
 	return empty($_GET['ajax']) ? do_redirect(null) : do_json(['ok' => 1]);
 }
+
+$edited = !empty($_COOKIE['edited']);
+setcookie('edited', 0, 1);
 
 $properties = Property::all("enabled = '1' ORDER BY o, id");
 

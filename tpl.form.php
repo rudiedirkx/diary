@@ -1,9 +1,9 @@
-<form method="post" action="index.php" class="entry" onsubmit="return fetch(new Request('?ajax=1', {
+<form method="post" action="index.php" class="entry <?= $edited ? 'edited' : '' ?>" onsubmit="return fetch(new Request('?ajax=1', {
 	method: 'post',
 	body: new FormData(this),
 })).then(rsp => {
 	rsp.clone().json().then(dt => location.reload(), ex => rsp.text().then(txt => alert(txt)))
-}), false">
+}), false" oninput="this.classList.add('editing')">
 	<input type="hidden" name="id" value="<?= $entry->id ?? '' ?>" />
 
 	<fieldset>
@@ -26,3 +26,10 @@
 		<p><button>Save</button></p>
 	</fieldset>
 </form>
+
+<script>
+setTimeout(function() {
+	const $form = document.querySelector('form.entry.edited');
+	$form && $form.classList.remove('edited');
+}, 5e3);
+</script>
