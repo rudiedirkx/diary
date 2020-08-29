@@ -30,11 +30,11 @@ header('Content-type: text/html; charset=utf-8');
 		padding: 3px 0;
 	}
 
-	form.entry.editing table {
-		box-shadow: 0 0 10px red;
-	}
 	form.entry.edited table {
 		box-shadow: 0 0 10px lime;
+	}
+	form.entry.editing table {
+		box-shadow: 0 0 10px red;
 	}
 
 	form.entry input,
