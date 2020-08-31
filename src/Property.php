@@ -15,8 +15,8 @@ class Property extends Model {
 
 		$wheres = [];
 
-		if ( trim($filters['search'] ?? '') != '' ) {
-			$like = '%' . $filters['search'] . '%';
+		if ( ($search = trim($filters['search'] ?? '')) != '' ) {
+			$like = '%' . $search . '%';
 			$wheres[] = self::$_db->replaceholders("(text LIKE ? OR id IN (select entry_id from entries_properties where value LIKE ?))", [$like, $like]);
 		}
 
