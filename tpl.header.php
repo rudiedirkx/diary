@@ -52,7 +52,7 @@ header('Content-type: text/html; charset=utf-8');
 
 	h2,
 	.between-entries {
-		margin: 1em 0;
+		margin: 1em 0 0.25em;
 	}
 
 	input.int {

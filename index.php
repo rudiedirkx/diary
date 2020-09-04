@@ -101,7 +101,9 @@ if ( $showForm ) {
 	<? endif ?>
 	<div class="entry">
 		<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->pretty_date ?></a></h2>
-		<p><?= nl2br(html($entry->text)) ?></p>
+		<?if ($entry->text): ?>
+			<p><?= nl2br(html($entry->text)) ?></p>
+		<? endif ?>
 		<table>
 			<? foreach ($entry->property_displays as $display): ?>
 				<tr>
