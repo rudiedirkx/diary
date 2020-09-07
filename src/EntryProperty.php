@@ -2,9 +2,7 @@
 
 namespace rdx\diary;
 
-use db_generic_model;
-
-class EntryProperty extends db_generic_model {
+class EntryProperty extends Model {
 
 	static public $_table = 'entries_properties';
 

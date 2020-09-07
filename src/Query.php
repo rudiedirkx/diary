@@ -2,9 +2,7 @@
 
 namespace rdx\diary;
 
-use db_generic_model;
-
-class Query extends db_generic_model {
+class Query extends Model {
 
 	static public $_table = 'queries';
 
