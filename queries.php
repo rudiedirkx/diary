@@ -32,6 +32,12 @@ input, textarea {
 input, fieldset {
 	margin-bottom: 0.5em;
 }
+input.name {
+	width: calc(100% - 5.5em);
+}
+textarea:focus {
+	height: 14em;
+}
 </style>
 
 <p>
@@ -42,11 +48,12 @@ input, fieldset {
 <form method="post" action>
 	<? foreach ($queries as $query): ?>
 		<fieldset>
-			<input name="queries[<?= $query->id ?>][name]" value="<?= html($query->name) ?>" /><br>
-			<textarea name="queries[<?= $query->id ?>][query]" rows="5"><?= html($query->query) ?></textarea><br>
+			<input name="queries[<?= $query->id ?>][name]" value="<?= html($query->name) ?>" class="name" />
 			<? if ($query->id): ?>
 				<a href="query.php?id=<?= $query->id ?>">Go</a>
 			<? endif ?>
+			<br>
+			<textarea name="queries[<?= $query->id ?>][query]" rows="3"><?= html($query->query) ?></textarea><br>
 		</fieldset>
 	<? endforeach ?>
 

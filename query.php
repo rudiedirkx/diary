@@ -27,7 +27,11 @@ td, th {
 
 <p>
 	<a href="index.php">Home</a>
+	<a href="config.php">Config</a>
+	<a href="queries.php">Queries</a>
 </p>
+
+<h1><?= html($query->name) ?></h1>
 
 <pre><?= html($query->query) ?></pre>
 
