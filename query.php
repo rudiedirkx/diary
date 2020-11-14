@@ -8,6 +8,8 @@ $query = Query::find($_GET['id'] ?? 0);
 
 include 'tpl.header.php';
 
+$queries = Query::all('1 ORDER BY name');
+
 ?>
 
 <style>
@@ -33,7 +35,19 @@ td, th {
 
 <h1><?= html($query->name) ?></h1>
 
-<pre><?= html($query->query) ?></pre>
+<details>
+	<summary>Queries</summary>
+	<ul>
+		<? foreach ($queries as $q): ?>
+			<li><a href="query.php?id=<?= $q->id ?>"><?= html($q->name) ?></a></li>
+		<? endforeach ?>
+	</ul>
+</details>
+
+<details>
+	<summary>Query</summary>
+	<pre><?= html($query->query) ?></pre>
+</details>
 
 <?php
 

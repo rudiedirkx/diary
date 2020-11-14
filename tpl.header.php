@@ -27,7 +27,7 @@ header('Content-type: text/html; charset=utf-8');
 		white-space: nowrap;
 	}
 	summary {
-		padding: 3px 0;
+		padding: 6px 0;
 	}
 
 	form.entry.edited table {
