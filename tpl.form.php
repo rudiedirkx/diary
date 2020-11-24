@@ -32,4 +32,12 @@ setTimeout(function() {
 	const $form = document.querySelector('form.entry.edited');
 	$form && $form.classList.remove('edited');
 }, 5e3);
+
+setTimeout(function() {
+	document.querySelector('form').addEventListener('focus', function(e) {
+		if (e.target.matches('input[type="number"]')) {
+			setTimeout(() => e.target.select(), 100);
+		}
+	}, true);
+});
 </script>
