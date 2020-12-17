@@ -8,7 +8,7 @@ $query = Query::find($_GET['id'] ?? 0);
 
 include 'tpl.header.php';
 
-$queries = Query::all('1 ORDER BY name');
+$queries = Query::all("visible = '1' ORDER BY name");
 
 ?>
 
@@ -35,7 +35,7 @@ td, th {
 
 <h1><?= html($query->name) ?></h1>
 
-<details>
+<details open>
 	<summary>Queries</summary>
 	<ul>
 		<? foreach ($queries as $q): ?>

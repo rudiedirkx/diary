@@ -55,7 +55,7 @@ EntryProperty::eager('property', $props);
 
 include 'tpl.header.php';
 
-$queries = Query::all('1 ORDER BY name');
+$queries = Query::all("visible = '1' ORDER BY name");
 
 $todayish = date('Y-m-d', strtotime(TODAYISH));
 

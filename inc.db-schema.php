@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'version' => 6,
+	'version' => 7,
 	'tables' => [
 		'entries' => [
 			'id' => ['pk' => true],
@@ -29,6 +29,7 @@ return [
 			'id' => ['pk' => true],
 			'name' => ['null' => false],
 			'query' => ['null' => false],
+			'visible' => ['type' => 'int', 'default' => 1],
 		],
 	],
 	'data' => [

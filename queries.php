@@ -9,7 +9,7 @@ $queries = Query::all('1 ORDER BY name');
 if ( isset($_POST['queries']) ) {
 	foreach ($_POST['queries'] as $id => $data) {
 		if ( isset($queries[$id]) ) {
-			$queries[$id]->update($data);
+			$queries[$id]->update(['visible' => !empty($data['visible'])] + $data);
 		}
 		elseif ( $id == 0 && ($data['name'] ?? '') !== '' ) {
 			Query::insert($data);
@@ -21,12 +21,12 @@ if ( isset($_POST['queries']) ) {
 
 include 'tpl.header.php';
 
-$queries[0] = new Query(['id' => 0]);
+$queries[0] = new Query(['id' => 0, 'visible' => 1]);
 
 ?>
 
 <style>
-input, textarea {
+input[type="text"], textarea {
 	width: 100%;
 }
 input, fieldset {
@@ -48,7 +48,8 @@ textarea:focus {
 <form method="post" action>
 	<? foreach ($queries as $query): ?>
 		<fieldset>
-			<input name="queries[<?= $query->id ?>][name]" value="<?= html($query->name) ?>" class="name" />
+			<input name="queries[<?= $query->id ?>][visible]" type="checkbox" <? if ($query->visible): ?>checked<? endif ?> />
+			<input name="queries[<?= $query->id ?>][name]" type="text" value="<?= html($query->name) ?>" class="name" />
 			<? if ($query->id): ?>
 				<a href="query.php?id=<?= $query->id ?>">Go</a>
 			<? endif ?>
