@@ -34,9 +34,11 @@ setTimeout(function() {
 }, 5e3);
 
 setTimeout(function() {
+	var T = 0;
 	document.querySelector('form').addEventListener('focus', function(e) {
+		clearTimeout(T);
 		if (e.target.matches('input[type="number"]')) {
-			setTimeout(() => e.target.select(), 100);
+			T = setTimeout(() => e.target.select(), 100);
 		}
 	}, true);
 });
