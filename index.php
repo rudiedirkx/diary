@@ -59,9 +59,9 @@ $queries = Query::all("visible = '1' ORDER BY name");
 
 $todayish = date('Y-m-d', strtotime(TODAYISH));
 
-$explicitEntry = $entry = Entry::find($_GET['edit'] ?? 0);
-if ( !$entry && count($entries) && reset($entries)->date == $todayish ) {
-	$entry = reset($entries);
+$_explicitEntry = $_entry = Entry::find($_GET['edit'] ?? 0);
+if ( !$_entry && count($entries) && reset($entries)->date == $todayish ) {
+	$_entry = reset($entries);
 }
 
 $showForm = $where === '1';
@@ -99,7 +99,7 @@ if ( $showForm ) {
 	<? if ($days): ?>
 		<div class="between-entries">...<?= $days ?> days...</div>
 	<? endif ?>
-	<div class="entry">
+	<div class="entry <?= $entry->id == $_entry->id ? 'opened' : '' ?>">
 		<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->pretty_date ?></a></h2>
 		<?if ($entry->text): ?>
 			<p><?= nl2br(html($entry->text)) ?></p>

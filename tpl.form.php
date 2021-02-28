@@ -4,22 +4,22 @@
 })).then(rsp => {
 	rsp.clone().json().then(dt => location.reload(), ex => rsp.text().then(txt => alert(txt)))
 }), false" oninput="this.classList.add('editing')">
-	<input type="hidden" name="id" value="<?= $entry->id ?? '' ?>" />
+	<input type="hidden" name="id" value="<?= $_entry->id ?? '' ?>" />
 
 	<fieldset>
-		<legend><?= ($entry ?? null) ? "Edit $entry->pretty_date" : 'Create' ?></legend>
+		<legend><?= ($_entry ?? null) ? "Edit $_entry->pretty_date" : 'Create' ?></legend>
 
-		<? if (!$explicitEntry && ($entry ?? null)): ?>
-			<input type="hidden" name="date" value="<?= $entry->date ?>" />
+		<? if (!$_explicitEntry && ($_entry ?? null)): ?>
+			<input type="hidden" name="date" value="<?= $_entry->date ?>" />
 		<? else: ?>
-			<p><input type="date" name="date" value="<?= $entry->date ?? $todayish ?>" /></p>
+			<p><input type="date" name="date" value="<?= $_entry->date ?? $todayish ?>" /></p>
 		<? endif ?>
-		<p><textarea name="text" rows="1"><?= html($entry->text ?? '') ?></textarea></p>
+		<p><textarea name="text" rows="1"><?= html($_entry->text ?? '') ?></textarea></p>
 		<table cellpadding="3" cellspacing="0" border="1">
 			<? foreach ($properties as $prop): ?>
 				<tr>
 					<th><?= html($prop) ?></th>
-					<td><?= $prop->makeFormHtml($entry->property_values[$prop->id] ?? null) ?></td>
+					<td><?= $prop->makeFormHtml($_entry->property_values[$prop->id] ?? null) ?></td>
 				</tr>
 			<? endforeach ?>
 		</table>

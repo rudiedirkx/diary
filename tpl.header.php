@@ -18,6 +18,7 @@ header('Content-type: text/html; charset=utf-8');
 	}
 	body {
 		max-width: 700px;
+		font-family: sans-serif;
 	}
 	td, th {
 		text-align: left;
@@ -50,6 +51,16 @@ header('Content-type: text/html; charset=utf-8');
 		height: 5em;
 	}
 
+	.entry h2 a {
+		color: darkred;
+		text-decoration: none;
+	}
+	.entry.opened h2 a {
+		color: white;
+		text-shadow: 0 0 5px darkred;
+		background: pink;
+	}
+
 	h2,
 	.between-entries {
 		margin: 1em 0 0.25em;
@@ -65,16 +76,6 @@ header('Content-type: text/html; charset=utf-8');
 	}
 	form.filter label {
 		margin-right: .5em;
-	}
-
-	input[type=number]::-webkit-inner-spin-button,
-	input[type=number]::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		appearance: none;
-		margin: 0;
-	}
-	input[type=number] {
-		-moz-appearance: textfield;
 	}
 	</style>
 </head>
