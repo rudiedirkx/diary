@@ -99,7 +99,7 @@ if ( $showForm ) {
 	<? if ($days): ?>
 		<div class="between-entries">...<?= $days ?> days...</div>
 	<? endif ?>
-	<div class="entry <?= $entry->id == $_entry->id ? 'opened' : '' ?>">
+	<div class="entry <?= $_entry && $entry->id == $_entry->id ? 'opened' : '' ?>">
 		<h2><a href="?edit=<?= $entry->id ?>"><?= $entry->pretty_date ?></a></h2>
 		<?if ($entry->text): ?>
 			<p><?= nl2br(html($entry->text)) ?></p>
