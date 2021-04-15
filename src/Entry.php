@@ -6,6 +6,15 @@ class Entry extends Model {
 
 	static public $_table = 'entries';
 
+	static public function byIdOrDate(?int $id, ?string $date) : ?self {
+		foreach (compact('id', 'date') as $key => $value) {
+			if ($value && $entry = self::first([$key => $value])) {
+				return $entry;
+			}
+		}
+		return null;
+	}
+
 	public function saveProps( array $props ) {
 		$properties = Property::all("enabled = '1'");
 

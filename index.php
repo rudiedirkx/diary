@@ -59,7 +59,7 @@ $queries = Query::all("visible = '1' ORDER BY name");
 
 $todayish = date('Y-m-d', strtotime(TODAYISH));
 
-$_explicitEntry = $_entry = Entry::find($_GET['edit'] ?? 0);
+$_explicitEntry = $_entry = Entry::byIdOrDate($_GET['edit'] ?? null, $_GET['date'] ?? null);
 if ( !$_entry && count($entries) && reset($entries)->date == $todayish ) {
 	$_entry = reset($entries);
 }

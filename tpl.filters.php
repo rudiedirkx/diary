@@ -7,7 +7,8 @@
 				With <em><?= html($property) ?></em>
 			</label>
 		<? endforeach ?>
-		<input type="text" name="search" placeholder="Search all" size="10" value="<?= html($_GET['search'] ?? '') ?>" />
+		<input type="search" name="search" placeholder="Search all" size="10" value="<?= html($_GET['search'] ?? '') ?>" />
+		<input type="date" name="date" value="<?= html($_GET['date'] ?? '') ?>" />
 		<button>Filter</button>
 	</form>
 </details>
