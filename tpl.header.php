@@ -37,6 +37,9 @@ header('Content-type: text/html; charset=utf-8');
 	form.entry.editing table {
 		box-shadow: 0 0 10px red;
 	}
+	form.entry.saving table {
+		box-shadow: 0 0 10px blue;
+	}
 
 	form.entry input,
 	form.entry textarea {

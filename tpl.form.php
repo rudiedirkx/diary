@@ -1,4 +1,4 @@
-<form method="post" action="index.php" class="entry <?= $edited ? 'edited' : '' ?>" onsubmit="return fetch(new Request('?ajax=1', {
+<form method="post" action="index.php" class="entry <?= $edited ? 'edited' : '' ?>" onsubmit="return this.classList.add('saving'), fetch(new Request('?ajax=1', {
 	method: 'post',
 	body: new FormData(this),
 })).then(rsp => {
