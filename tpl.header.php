@@ -73,7 +73,7 @@ header('Content-type: text/html; charset=utf-8');
 	}
 
 	input.int {
-		width: 1.8em;
+		width: 2em;
 		text-align: center;
 	}
 

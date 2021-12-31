@@ -25,18 +25,29 @@ if ( isset($_POST['props']) ) {
 include 'tpl.header.php';
 
 ?>
+<style>
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 0;
+}
+input[type=number] {
+	-moz-appearance: textfield;
+}
+</style>
 
 <p>
 	<a href="index.php">Home</a>
 	<a href="queries.php">Queries</a>
 </p>
 
-<form method="post" action>
+<form class="config" method="post" action>
 	<table border="1">
 		<tr>
-			<th></th>
-			<th></th>
-			<th></th>
+			<th>ID</th>
+			<th>?</th>
+			<th>O</th>
 			<th>Machine name</th>
 			<th>Name</th>
 			<th>Type</th>
