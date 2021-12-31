@@ -3,7 +3,7 @@
     "description": "Configurable diary",
     "type": "project",
     "require": {
-        "rdx/db": "^1.14",
+        "rdx/db": "dev-master",
         "symfony/expression-language": "^4.3"
     },
     "autoload": {

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "180d4b5d92feedaf68d2100846d3a7fa",
+    "content-hash": "d4a5f47f92ee73d4f33f5b0ab532aa8c",
     "packages": [
         {
             "name": "psr/cache",
@@ -155,20 +155,24 @@
         },
         {
             "name": "rdx/db",
-            "version": "1.20",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rudiedirkx/db_generic.git",
-                "reference": "1aa7f35859821879490082ac2ea06e7d11c29374"
+                "reference": "0cc32429d63b90348660a8f3ce363cc6c313ac73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rudiedirkx/db_generic/zipball/1aa7f35859821879490082ac2ea06e7d11c29374",
-                "reference": "1aa7f35859821879490082ac2ea06e7d11c29374",
+                "url": "https://api.github.com/repos/rudiedirkx/db_generic/zipball/0cc32429d63b90348660a8f3ce363cc6c313ac73",
+                "reference": "0cc32429d63b90348660a8f3ce363cc6c313ac73",
                 "shasum": ""
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
+                "exclude-from-classmap": [
+                    "/test/"
+                ],
                 "classmap": [
                     "./"
                 ]
@@ -186,9 +190,9 @@
             "description": "Simple MySQL/SQLite wrapper",
             "support": {
                 "issues": "https://github.com/rudiedirkx/db_generic/issues",
-                "source": "https://github.com/rudiedirkx/db_generic/tree/1.20"
+                "source": "https://github.com/rudiedirkx/db_generic/tree/master"
             },
-            "time": "2021-02-10T23:13:36+00:00"
+            "time": "2021-12-31T22:23:00+00:00"
         },
         {
             "name": "symfony/cache",
@@ -818,7 +822,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "rdx/db": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
