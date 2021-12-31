@@ -4,12 +4,13 @@ use rdx\diary\Query;
 
 require 'inc.bootstrap.php';
 
-$queries = Query::all('1 ORDER BY name');
+$queries = Query::all('1=1 ORDER BY name');
 
 if ( isset($_POST['queries']) ) {
 	foreach ($_POST['queries'] as $id => $data) {
+		$data['visible'] = (int) !empty($data['visible']);
 		if ( isset($queries[$id]) ) {
-			$queries[$id]->update(['visible' => !empty($data['visible'])] + $data);
+			$queries[$id]->update($data);
 		}
 		elseif ( $id == 0 && ($data['name'] ?? '') !== '' ) {
 			Query::insert($data);

@@ -33,20 +33,21 @@ return [
 		],
 	],
 	'data' => [
+		'queries' => [
+			[
+				'name' => 'Days of diary',
+				'query' => 'select count(1) days from entries',
+			],
+		],
 		'entries' => [
 			[
 				'date' => '2019-06-01',
-				'text' => "Hi there!\n\nWelcome to The Diary 2000!\n\nDid some Groceries today, and watched a Movie.",
+				'text' => "Hi there!\n\nWelcome to The Diary 2000!",
 				'created_on' => 1559509110,
 			],
 			[
 				'date' => '2019-06-02',
-				'text' => "Cycled some. And did some other unquantifiable stuff.",
-				'created_on' => 1559509110,
-			],
-			[
-				'date' => '2019-06-03',
-				'text' => "Should have cycled, but didn't.",
+				'text' => "",
 				'created_on' => 1559509110,
 			],
 		],
@@ -80,11 +81,6 @@ return [
 				'entry_id' => 2,
 				'property_id' => 3,
 				'value' => 120,
-			],
-			[
-				'entry_id' => 3,
-				'property_id' => 3,
-				'value' => 0,
 			],
 		],
 	],

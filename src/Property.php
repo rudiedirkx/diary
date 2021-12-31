@@ -11,7 +11,7 @@ class Property extends Model {
 	static public $types = [];
 
 	static public function whereFromFilter( array $properties, array $filters ) {
-		if ( !count(array_filter($filters)) ) return '1';
+		if ( !count(array_filter($filters)) ) return '1=1';
 
 		$wheres = [];
 
@@ -26,7 +26,7 @@ class Property extends Model {
 			}
 		}
 
-		return implode(' AND ', $wheres) ?: '1';
+		return implode(' AND ', $wheres) ?: '1=1';
 	}
 
 	public function saveProp( Entry $entry, $value ) {

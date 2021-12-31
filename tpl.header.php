@@ -27,6 +27,9 @@ header('Content-type: text/html; charset=utf-8');
 	th {
 		white-space: nowrap;
 	}
+	button {
+		padding: 8px 16px;
+	}
 	summary {
 		padding: 6px 0;
 	}

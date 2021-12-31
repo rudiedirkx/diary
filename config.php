@@ -4,7 +4,7 @@ use rdx\diary\Property;
 
 require 'inc.bootstrap.php';
 
-$properties = Property::all("1 ORDER BY o, id");
+$properties = Property::all("1=1 ORDER BY o, id");
 $propertyTypes = array_map(function($type) {
 	return $type->label;
 }, Property::$types);

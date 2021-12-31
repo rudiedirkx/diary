@@ -64,9 +64,9 @@ if ( !$_entry && count($entries) && reset($entries)->date == $todayish ) {
 	$_entry = reset($entries);
 }
 
-$showForm = $where === '1';
-$showHomeLink = $where !== '1';
-$showFiltersOpen = $where !== '1';
+$showForm = $where === '1=1';
+$showHomeLink = $where !== '1=1';
+$showFiltersOpen = $where !== '1=1';
 
 if ( $showForm ) {
 	include 'tpl.form.php';
