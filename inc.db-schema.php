@@ -1,14 +1,22 @@
 <?php
 
 return [
-	'version' => 7,
+	'version' => 13,
 	'tables' => [
 		'entries' => [
-			'id' => ['pk' => true],
-			'date' => ['null' => false],
-			'text' => ['null' => false],
-			'created_on' => ['null' => false, 'default' => 0],
-			'updated_on' => ['null' => false, 'default' => 0],
+			'columns' => [
+				'id' => ['pk' => true],
+				'date' => ['null' => false],
+				'text' => ['null' => false],
+				'created_on' => ['null' => false, 'default' => 0],
+				'updated_on' => ['null' => false, 'default' => 0],
+			],
+			'indexes' => [
+				'entries_date' => [
+					'unique' => true,
+					'columns' => ['date'],
+				],
+			],
 		],
 		'properties' => [
 			'id' => ['pk' => true],
@@ -20,10 +28,18 @@ return [
 			'o' => ['type' => 'int', 'default' => 0],
 		],
 		'entries_properties' => [
-			'id' => ['pk' => true],
-			'entry_id' => ['null' => false, 'references' => ['entries', 'id', 'cascade']],
-			'property_id' => ['null' => false, 'references' => ['properties', 'id', 'cascade']],
-			'value' => ['null' => false],
+			'columns' => [
+				'id' => ['pk' => true],
+				'entry_id' => ['null' => false, 'references' => ['entries', 'id', 'cascade']],
+				'property_id' => ['null' => false, 'references' => ['properties', 'id', 'cascade']],
+				'value' => ['null' => false],
+			],
+			'indexes' => [
+				'entries_properties_property_entry' => [
+					'unique' => true,
+					'columns' => ['property_id', 'entry_id'],
+				],
+			],
 		],
 		'queries' => [
 			'id' => ['pk' => true],
