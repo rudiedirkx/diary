@@ -26,6 +26,7 @@ abstract class InputPropertyType extends PropertyType {
 
 		$attributes['type'] = $this->getInputType();
 		$attributes['name'] = $name;
+		$attributes['enterkeyhint'] = 'send';
 
 		if ( $value !== null ) {
 			$attributes['value'] = $value;
