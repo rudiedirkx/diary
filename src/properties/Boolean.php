@@ -13,4 +13,8 @@ class Boolean extends PropertyType {
 		return '<input type="checkbox" name="' . $name . '" value="1" ' . $checked . ' />';
 	}
 
+	public function canFold() : bool {
+		return true;
+	}
+
 }

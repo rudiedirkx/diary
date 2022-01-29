@@ -30,6 +30,9 @@ header('Content-type: text/html; charset=utf-8');
 	button {
 		padding: 8px 16px;
 	}
+	button:default {
+		font-weight: bold;
+	}
 	summary {
 		padding: 6px 0;
 	}
@@ -55,6 +58,13 @@ header('Content-type: text/html; charset=utf-8');
 	}
 	form.entry textarea[name="text"]:focus {
 		height: 5em;
+	}
+
+	.unfold-properties button {
+		padding: 3px 16px;
+		width: 100%;
+		background: aliceblue;
+		border: 0;
 	}
 
 	.entry h2 a {

@@ -7,10 +7,26 @@ use Symfony\Component\ExpressionLanguage\SyntaxError;
 class Property extends Model {
 
 	static public $_table = 'properties';
-
 	static public $types = [];
 
-	static public function whereFromFilter( array $properties, array $filters ) {
+	static public function foldAfterId( array $properties ) : ?int {
+		$folders = false;
+		foreach ( array_reverse($properties) as $property ) {
+			if ( $property->canFold() ) {
+				$folders = true;
+			}
+			else {
+				return $folders ? $property->id : null;
+			}
+		}
+		return null;
+	}
+
+	public function canFold() : bool {
+		return self::$types[$this->type]->canFold();
+	}
+
+	static public function whereFromFilter( array $properties, array $filters ) : string {
 		if ( !count(array_filter($filters)) ) return '1=1';
 
 		$wheres = [];

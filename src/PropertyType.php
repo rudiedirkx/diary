@@ -8,4 +8,8 @@ abstract class PropertyType {
 
 	abstract public function makeFormHtml( $name, $value = null ) : string;
 
+	public function canFold() : bool {
+		return false;
+	}
+
 }

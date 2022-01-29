@@ -16,12 +16,22 @@
 		<? endif ?>
 		<p><textarea name="text" rows="1"><?= html($_entry->text ?? '') ?></textarea></p>
 		<table cellpadding="3" cellspacing="0" border="1">
-			<? foreach ($properties as $prop): ?>
-				<tr>
-					<th><?= html($prop) ?></th>
-					<td><?= $prop->makeFormHtml($_entry->property_values[$prop->id] ?? null) ?></td>
-				</tr>
-			<? endforeach ?>
+			<tbody>
+				<? foreach (array_values($properties) as $i => $prop): ?>
+					<tr>
+						<th><?= html($prop) ?></th>
+						<td><?= $prop->makeFormHtml($_entry->property_values[$prop->id] ?? null) ?></td>
+					</tr>
+					<? if ($foldAfter == $prop->id && count($properties) > $i + 1): ?>
+						<tr>
+							<th colspan="2" class="unfold-properties">
+								<button type="button">Unfold <?= count($properties) - $i - 1 ?></button>
+							</th>
+						</tr>
+						</tbody><tbody id="folded-properties" hidden>
+					<? endif ?>
+				<? endforeach ?>
+			</tbody>
 		</table>
 		<p><button>Save</button></p>
 	</fieldset>
@@ -31,7 +41,7 @@
 setTimeout(function() {
 	const $form = document.querySelector('form.entry.edited');
 	$form && $form.classList.remove('edited');
-}, 5e3);
+}, 5000);
 
 setTimeout(function() {
 	var T = 0;
@@ -41,5 +51,14 @@ setTimeout(function() {
 			T = setTimeout(() => e.target.select(), 100);
 		}
 	}, true);
+});
+
+setTimeout(function() {
+	const btn = document.querySelector('.unfold-properties button');
+	btn.addEventListener('click', e => {
+		e.preventDefault();
+		const tb = document.querySelector('#folded-properties');
+		tb.hidden = !tb.hidden;
+	});
 });
 </script>
