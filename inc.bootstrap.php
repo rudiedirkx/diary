@@ -48,3 +48,4 @@ const TODAYISH = '-5 hours';
 
 ini_set('html_errors', 0);
 header('Content-type: text/plain; charset=utf-8');
+header('Cache-Control: no-store, no-cache, must-revalidate');
