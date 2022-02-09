@@ -16,22 +16,27 @@
 		<? endif ?>
 		<p><textarea name="text" rows="1"><?= html($_entry->text ?? '') ?></textarea></p>
 		<table cellpadding="3" cellspacing="0" border="1">
-			<tbody>
-				<? foreach (array_values($properties) as $i => $prop): ?>
-					<tr>
-						<th><?= html($prop) ?></th>
-						<td><?= $prop->makeFormHtml($_entry->property_values[$prop->id] ?? null) ?></td>
-					</tr>
-					<? if ($foldAfter == $prop->id && count($properties) > $i + 1): ?>
+			<? foreach ($groupedProperties as $gi => $group): ?>
+				<tbody <? if ($gi == 1): ?>id="folded-properties" hidden<? endif ?>>
+					<? foreach ($group as $pi => $prop): ?>
 						<tr>
-							<th colspan="2" class="unfold-properties">
-								<button type="button">Unfold <?= count($properties) - $i - 1 ?></button>
-							</th>
+							<th><?= html($prop) ?></th>
+							<td><?= $prop->makeFormHtml($_entry->property_values[$prop->id] ?? null) ?></td>
 						</tr>
-						</tbody><tbody id="folded-properties" hidden>
-					<? endif ?>
-				<? endforeach ?>
-			</tbody>
+						<? if ($gi == 0 && $pi + 1 == count($group) && isset($groupedProperties[1])): ?>
+							<tr>
+								<th colspan="2" class="unfold-properties">
+									<button type="button">
+										<? foreach ($groupedProperties[1] as $prop1): ?>
+											<span class="<?= $_entry->hasProperty($prop1->id) ? 'with' : 'without' ?>"><?= $prop1 ?></span>,
+										<? endforeach ?>
+									</button>
+								</th>
+							</tr>
+						<? endif ?>
+					<? endforeach ?>
+				</tbody>
+			<? endforeach ?>
 		</table>
 		<p><button>Save</button></p>
 	</fieldset>

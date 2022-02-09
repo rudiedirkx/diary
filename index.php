@@ -47,7 +47,7 @@ $edited = !empty($_COOKIE['edited']);
 setcookie('edited', 0, 1);
 
 $properties = Property::all("enabled = '1' ORDER BY o, id");
-$foldAfter = Property::foldAfterId($properties);
+$groupedProperties = Property::groupByUI($properties);
 
 $where = Property::whereFromFilter($properties, $_GET);
 $entries = Entry::all("$where ORDER BY date DESC LIMIT 8");

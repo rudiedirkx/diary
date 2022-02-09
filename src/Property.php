@@ -9,7 +9,24 @@ class Property extends Model {
 	static public $_table = 'properties';
 	static public $types = [];
 
-	static public function foldAfterId( array $properties ) : ?int {
+	static public function groupByUI( array $properties ) : array {
+		$pid = self::foldAfterId($properties);
+		if (!$pid) return [$properties];
+
+		$groups = [[], []];
+		$gi = 0;
+		foreach ($properties as $property) {
+			$groups[$gi][] = $property;
+
+			if ($pid == $property->id) {
+				$gi = 1;
+			}
+		}
+
+		return array_filter($groups);
+	}
+
+	static protected function foldAfterId( array $properties ) : ?int {
 		$folders = false;
 		foreach ( array_reverse($properties) as $property ) {
 			if ( $property->canFold() ) {

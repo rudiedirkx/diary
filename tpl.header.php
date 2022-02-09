@@ -66,6 +66,12 @@ header('Content-type: text/html; charset=utf-8');
 		background: aliceblue;
 		border: 0;
 	}
+	.unfold-properties .with {
+		color: green;
+	}
+	.unfold-properties .without {
+		color: red;
+	}
 
 	.entry h2 a {
 		color: darkred;

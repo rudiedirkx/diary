@@ -36,6 +36,10 @@ class Entry extends Model {
 		return true;
 	}
 
+	public function hasProperty(int $pid) : bool {
+		return (bool) ($this->property_values[$pid] ?? null);
+	}
+
 	protected function get_pretty_date() {
 		return date('D d-m-Y', strtotime($this->date));
 	}
