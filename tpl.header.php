@@ -65,6 +65,7 @@ header('Content-type: text/html; charset=utf-8');
 		width: 100%;
 		background: aliceblue;
 		border: 0;
+		white-space: normal;
 	}
 	.unfold-properties .with {
 		color: green;
