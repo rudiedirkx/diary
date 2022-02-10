@@ -28,7 +28,7 @@
 								<th colspan="2" class="unfold-properties">
 									<button type="button">
 										<? foreach ($groupedProperties[1] as $prop1): ?>
-											<span class="<?= $_entry->hasProperty($prop1->id) ? 'with' : 'without' ?>"><?= $prop1 ?></span>,
+											<span class="<?= $_entry && $_entry->hasProperty($prop1->id) ? 'with' : 'without' ?>"><?= $prop1 ?></span>,
 										<? endforeach ?>
 									</button>
 								</th>
