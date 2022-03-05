@@ -1,8 +1,8 @@
-<form method="post" action="index.php" class="entry <?= $edited ? 'edited' : '' ?>" onsubmit="return this.classList.add('saving'), fetch(new Request('?ajax=1', {
+<form method="post" action="index.php" class="entry" onsubmit="return this.classList.add('saving'), fetch(new Request('?ajax=1', {
 	method: 'post',
 	body: new FormData(this),
 })).then(rsp => {
-	rsp.clone().json().then(dt => location.reload(), ex => rsp.text().then(txt => alert(txt)))
+	rsp.clone().json().then(dt => this.className = 'entry edited', ex => rsp.text().then(txt => alert(txt)))
 }), false" oninput="this.classList.add('editing')">
 	<input type="hidden" name="id" value="<?= $_entry->id ?? '' ?>" />
 
