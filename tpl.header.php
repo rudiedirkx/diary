@@ -20,6 +20,9 @@ header('Content-type: text/html; charset=utf-8');
 		max-width: 700px;
 		font-family: sans-serif;
 	}
+	body, table, input, textarea, select {
+		font-size: 16px;
+	}
 	td, th {
 		text-align: left;
 		vertical-align: top;

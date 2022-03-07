@@ -9,6 +9,8 @@
 	<fieldset>
 		<legend><?= ($_entry ?? null) ? "Edit $_entry->pretty_date" : 'Create' ?></legend>
 
+		<!-- <div><span style="border: dotted 2px #000; display: inline-block; padding: 0 2px; min-width: 0.75em" contenteditable inputmode="numeric">4</span> pannenkoeken, </div> -->
+
 		<? if (!$_explicitEntry && ($_entry ?? null)): ?>
 			<input type="hidden" name="date" value="<?= $_entry->date ?>" />
 		<? else: ?>
@@ -52,8 +54,20 @@ setTimeout(function() {
 	var T = 0;
 	document.querySelector('form').addEventListener('focus', function(e) {
 		clearTimeout(T);
-		if (e.target.matches('input[type="number"]')) {
-			T = setTimeout(() => e.target.select(), 100);
+		if (e.target.matches('input[type="number"], [inputmode="numeric"]')) {
+			T = setTimeout(() => {
+				try {
+					e.target.select();
+				}
+				catch (ex) {
+					const r = document.createRange();
+					r.setStart(e.target, 0);
+					r.setEnd(e.target, 1);
+					const s = document.getSelection();
+					s.removeAllRanges();
+					s.addRange(r);
+				}
+			}, 100);
 		}
 	}, true);
 });
