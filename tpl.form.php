@@ -46,11 +46,6 @@
 
 <script>
 setTimeout(function() {
-	const $form = document.querySelector('form.entry.edited');
-	$form && $form.classList.remove('edited');
-}, 5000);
-
-setTimeout(function() {
 	var T = 0;
 	document.querySelector('form').addEventListener('focus', function(e) {
 		clearTimeout(T);
