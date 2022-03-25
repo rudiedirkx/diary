@@ -20,7 +20,7 @@ class Entry extends Model {
 
 		$save = [];
 		foreach ($props as $id => $value) {
-			if ( !isset($properties[$id]) ) return false;
+			if ( !isset($properties[$id]) ) continue;
 			$property = $properties[$id];
 
 			if ( trim($value) !== '' ) {
@@ -32,8 +32,6 @@ class Entry extends Model {
 		foreach ($save as $id => $value) {
 			$properties[$id]->saveProp($this, $value);
 		}
-
-		return true;
 	}
 
 	public function hasProperty(int $pid) : bool {

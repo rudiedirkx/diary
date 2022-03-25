@@ -11,40 +11,21 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 	$props = $_POST['props'] ?? [];
 	unset($_POST['props']);
 
-	$db->begin();
+	$entry = Entry::first(['date' => $_POST['date']]);
 
-	if ( !empty($_POST['id']) ) {
-		$new = false;
-		$entry = Entry::find($_POST['id']);
-		unset($_POST['id']);
-		$_POST['text'] = trim($_POST['text']);
-		$entry->update($_POST);
-	}
-	else {
-		$new = true;
-		unset($_POST['id']);
-		$entry = Entry::find(Entry::insert($_POST));
-	}
-
-	$saved = $entry->saveProps($props);
-	if ( !$saved ) {
-		if ( $new ) {
-			$entry->delete();
+	$db->transaction(function() use (&$entry, $props) {
+		if ( $entry ) {
+			$entry->update($_POST);
+		}
+		else {
+			$entry = Entry::find(Entry::insert($_POST));
 		}
 
-		header('HTTP/1.0 400 Property save failed');
-		exit("Property save failed. Go back?\n");
-	}
-
-	$db->commit();
-
-	setcookie('edited', 1);
+		$entry->saveProps($props);
+	});
 
 	return empty($_GET['ajax']) ? do_redirect(null) : do_json(['ok' => 1]);
 }
-
-$edited = !empty($_COOKIE['edited']);
-setcookie('edited', 0, 1);
 
 $properties = Property::all("enabled = '1' ORDER BY o, id");
 $groupedProperties = Property::groupByUI($properties);
