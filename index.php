@@ -31,7 +31,9 @@ $properties = Property::all("enabled = '1' ORDER BY o, id");
 $groupedProperties = Property::groupByUI($properties);
 
 $where = Property::whereFromFilter($properties, $_GET);
-$entries = Entry::all("$where ORDER BY date DESC LIMIT 8");
+//var_dump($where);
+$limit = strlen($where) > 3 ? 20 : 8;
+$entries = Entry::all("$where ORDER BY date DESC LIMIT $limit");
 $props = Entry::eager('properties', $entries);
 EntryProperty::eager('property', $props);
 
