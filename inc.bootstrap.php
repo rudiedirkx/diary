@@ -20,6 +20,10 @@ elseif ( defined('HEROKU_PG_URI') && HEROKU_PG_URI ) {
 // Local
 else {
 	$db = db_sqlite::open(array('database' => DB_FILE));
+	$db->connect();
+	$db->addFunction('sign', function($val) {
+		return $val > 0 ? '+' . $val : $val;
+	});
 }
 
 db_generic_model::$_db = $db;
