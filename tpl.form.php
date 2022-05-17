@@ -16,7 +16,9 @@
 		<? else: ?>
 			<p><input type="date" name="date" value="<?= $_entry->date ?? $todayish ?>" /></p>
 		<? endif ?>
-		<p><textarea name="text" rows="1"><?= html($_entry->text ?? '') ?></textarea></p>
+
+		<p><textarea name="text" rows="1" onfocus="this.rows=3"><?= html($_entry->text ?? '') ?></textarea></p>
+
 		<table cellpadding="3" cellspacing="0" border="1">
 			<? foreach ($groupedProperties as $gi => $group): ?>
 				<tbody <? if ($gi == 1): ?>id="folded-properties" hidden<? endif ?>>

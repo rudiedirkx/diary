@@ -59,9 +59,6 @@ header('Content-type: text/html; charset=utf-8');
 	form.entry input[type="checkbox"] {
 		width: auto;
 	}
-	form.entry textarea[name="text"]:focus {
-		height: 5em;
-	}
 
 	.unfold-properties button {
 		padding: 3px 16px;
