@@ -1,0 +1,106 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	max-width: 700px;
+	font-family: sans-serif;
+	background-color: #fff;
+	color: #000;
+}
+body, table, input, textarea, select {
+	font-size: 16px;
+}
+a {
+	color: blue;
+}
+td, th {
+	text-align: left;
+	vertical-align: top;
+}
+th {
+	white-space: nowrap;
+}
+button {
+	padding: 8px 16px;
+}
+button:default {
+	font-weight: bold;
+}
+summary {
+	padding: 6px 0;
+}
+
+form.entry.edited table {
+	box-shadow: 0 0 10px lime;
+}
+form.entry.editing table {
+	box-shadow: 0 0 10px red;
+}
+form.entry.saving table {
+	box-shadow: 0 0 10px blue;
+}
+
+form.entry input,
+form.entry textarea {
+	width: 100%;
+}
+form.entry input.auto-width,
+form.entry textarea.auto-width,
+form.entry input[type="checkbox"] {
+	width: auto;
+}
+
+.unfold-properties button {
+	padding: 3px 16px;
+	width: 100%;
+	background: aliceblue;
+	border: 0;
+	white-space: normal;
+}
+.unfold-properties .with {
+	color: green;
+}
+.unfold-properties .without {
+	color: red;
+}
+
+.entry h2 a {
+	color: darkred;
+	text-decoration: none;
+}
+.entry.opened h2 a {
+	color: white;
+	text-shadow: 0 0 5px darkred;
+	background: pink;
+}
+
+h2,
+.between-entries {
+	margin: 1em 0 0.25em;
+}
+
+input.int {
+	width: 2em;
+	text-align: center;
+}
+
+form.filter label {
+	display: inline-block;
+}
+form.filter label {
+	margin-right: .5em;
+}
+
+@media (prefers-color-scheme: dark) {
+	body, table, input, textarea, select {
+		background-color: #000;
+		color: #aaa;
+	}
+	a {
+		color: lightblue;
+	}
+	button, .unfold-properties button {
+		background-color: #666;
+		color: #fff;
+	}
+}
