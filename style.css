@@ -17,6 +17,9 @@ td, th {
 	text-align: left;
 	vertical-align: top;
 }
+td.c, th.c {
+	text-align: center;
+}
 th {
 	white-space: nowrap;
 }

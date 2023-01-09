@@ -4,7 +4,7 @@ use rdx\diary\Property;
 
 require 'inc.bootstrap.php';
 
-$properties = Property::all("1=1 ORDER BY o, id");
+$properties = Property::getAll();
 $propertyTypes = array_map(function($type) {
 	return $type->label;
 }, Property::$types);
@@ -12,7 +12,7 @@ $propertyTypes = array_map(function($type) {
 if ( isset($_POST['props']) ) {
 	foreach ($_POST['props'] as $id => $data) {
 		if ( isset($properties[$id]) ) {
-			$properties[$id]->save($data + ['enabled' => 0]);
+			$properties[$id]->save($data + ['enabled' => 0, 'render_always' => 0]);
 		}
 		elseif ( $id == 0 && ($data['name'] ?? '') !== '' ) {
 			Property::insert($data);
@@ -45,21 +45,22 @@ input[type=number] {
 <form class="config" method="post" action>
 	<table border="1">
 		<tr>
-			<th>ID</th>
-			<th>?</th>
-			<th>O</th>
+			<th class="c">ID</th>
+			<th class="c">?</th>
+			<th class="c">O</th>
 			<th>Machine name</th>
 			<th>Name</th>
 			<th>Type</th>
 			<th>Display</th>
+			<th class="c">Always</th>
 		</tr>
-		<? foreach (array_merge($properties, [new Property(['id' => 0, 'enabled' => 1])]) as $prop): ?>
+		<? foreach (array_merge($properties, [new Property(['id' => 0, 'enabled' => 1, 'render_always' => 0])]) as $prop): ?>
 			<tr>
-				<td><?= $prop->id ?: '' ?></td>
-				<td>
+				<td class="c"><?= $prop->id ?: '' ?></td>
+				<td class="c">
 					<input name="props[<?= $prop->id ?>][enabled]" type="checkbox" value="1" <?= $prop->enabled ? 'checked' : '' ?> class="auto-width" />
 				</td>
-				<td>
+				<td class="c">
 					<input name="props[<?= $prop->id ?>][o]" value="<?= html($prop->o) ?>" type="number" class="int" />
 				</td>
 				<td>
@@ -71,8 +72,11 @@ input[type=number] {
 				<td>
 					<select name="props[<?= $prop->id ?>][type]"><?= html_options($propertyTypes, $prop->type) ?></select>
 				</td>
-				<td style="width: 20em">
-					<input name="props[<?= $prop->id ?>][display]" value="<?= html($prop->display) ?>" />
+				<td>
+					<input name="props[<?= $prop->id ?>][display]" value="<?= html($prop->display) ?>" style="width: 30em" />
+				</td>
+				<td class="c">
+					<input name="props[<?= $prop->id ?>][render_always]" type="checkbox" value="1" <?= $prop->render_always ? 'checked' : '' ?> class="auto-width" />
 				</td>
 			</tr>
 		<? endforeach ?>

@@ -9,6 +9,17 @@ class Property extends Model {
 	static public $_table = 'properties';
 	static public $types = [];
 
+	static protected array $_all;
+	static protected array $_enabled;
+
+	static public function getAll() : array {
+		return self::$_all ??= Property::all("1=1 ORDER BY o, id");
+	}
+
+	static public function getEnabled() : array {
+		return self::$_enabled ??= Property::all("enabled = '1' ORDER BY o, id");
+	}
+
 	static public function groupByUI( array $properties ) : array {
 		$pid = self::foldAfterId($properties);
 		if (!$pid) return [$properties];
@@ -78,7 +89,7 @@ class Property extends Model {
 		return self::$types[$this->type]->makeFormHtml("props[$this->id]", $value);
 	}
 
-	public function displayValue($value, EntryValues $values) {
+	public function displayValue( ?string $value, EntryValues $values) {
 		if (!$this->display) {
 			return $value;
 		}

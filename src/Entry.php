@@ -16,7 +16,7 @@ class Entry extends Model {
 	}
 
 	public function saveProps( array $props ) {
-		$properties = Property::all("enabled = '1'");
+		$properties = Property::getEnabled();
 
 		$save = [];
 		foreach ($props as $id => $value) {
@@ -28,7 +28,10 @@ class Entry extends Model {
 			}
 		}
 
-		self::$_db->delete(EntryProperty::$_table, ['entry_id' => $this->id]);
+		self::$_db->delete(EntryProperty::$_table, [
+			'entry_id' => $this->id,
+			'property_id' => array_keys($properties),
+		]);
 		foreach ($save as $id => $value) {
 			$properties[$id]->saveProp($this, $value);
 		}
@@ -63,13 +66,18 @@ class Entry extends Model {
 	}
 
 	protected function get_property_displays() {
-		$values = new EntryValues($this->named_property_values);
+		$idValues = $this->property_values;
+		$nameValues = new EntryValues($this->named_property_values);
+		$all = Property::getAll();
 
 		$displays = [];
-		foreach ($this->properties as $prop) {
-			$display = $prop->property->displayValue($prop->value, $values);
-			if ( $display !== null ) {
-				$displays[$prop->property_id] = new PropertyDisplay($prop->property, $display);
+		foreach ( $all as $prop ) {
+			$value = $idValues[$prop->id] ?? null;
+			if ( $prop->render_always || $value != null ) {
+				$display = $prop->displayValue($value, $nameValues);
+				if ( $display !== null ) {
+					$displays[$prop->id] = new PropertyDisplay($prop, $display);
+				}
 			}
 		}
 

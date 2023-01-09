@@ -24,6 +24,9 @@ else {
 	$db->addFunction('sign', function($val) {
 		return $val > 0 ? '+' . $val : $val;
 	});
+	$db->addFunction('empty0', function($val) {
+		return $val == 0 ? '' : $val;
+	});
 }
 
 db_generic_model::$_db = $db;
@@ -51,5 +54,5 @@ $GLOBALS['expr']->addFunction(ExpressionFunction::fromPhp('trim'));
 const TODAYISH = '-5 hours';
 
 ini_set('html_errors', 0);
-header('Content-type: text/plain; charset=utf-8');
+// header('Content-type: text/plain; charset=utf-8');
 header('Cache-Control: no-store, no-cache, must-revalidate');

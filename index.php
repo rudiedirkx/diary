@@ -27,7 +27,7 @@ if ( isset($_POST['date'], $_POST['text']) ) {
 	return empty($_GET['ajax']) ? do_redirect(null) : do_json(['ok' => 1]);
 }
 
-$properties = Property::all("enabled = '1' ORDER BY o, id");
+$properties = Property::getEnabled();
 $groupedProperties = Property::groupByUI($properties);
 
 $where = Property::whereFromFilter($properties, $_GET);
