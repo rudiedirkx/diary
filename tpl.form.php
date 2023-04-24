@@ -51,8 +51,8 @@ setTimeout(function() {
 	var T = 0;
 	document.querySelector('form').addEventListener('focus', function(e) {
 		clearTimeout(T);
-		if (e.target.matches('input[type="number"], [inputmode="numeric"]')) {
-			T = setTimeout(() => {
+		T = setTimeout(() => {
+			if (e.target.matches('input[type="number"], [inputmode="numeric"]')) {
 				try {
 					e.target.select();
 				}
@@ -64,8 +64,11 @@ setTimeout(function() {
 					s.removeAllRanges();
 					s.addRange(r);
 				}
-			}, 100);
-		}
+			}
+			else if (e.target.matches('input[type="text"]')) {
+				e.target.selectionEnd = e.target.selectionStart = e.target.value.length;
+			}
+		}, 60);
 	}, true);
 });
 
