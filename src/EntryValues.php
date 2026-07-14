@@ -2,6 +2,7 @@
 
 namespace rdx\diary;
 
+#[\AllowDynamicProperties]
 class EntryValues {
 
 	public function __construct( array $values ) {

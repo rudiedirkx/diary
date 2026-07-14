@@ -5,6 +5,7 @@ namespace rdx\diary\properties;
 class Number extends InputPropertyType {
 
 	public $label = 'Number';
+	public $decimals = 0;
 
 	public function __construct( $decimals = 0, $label = null ) {
 		$this->decimals = $decimals;
