@@ -51,7 +51,7 @@ td, th {
 
 <?php
 
-$records = $db->fetch($query->sql)->all();
+$records = $db->fetch($query->sql)->allAssocArrays();
 
 if ( !count($records) ) {
 	echo '<p>No results</p>';
